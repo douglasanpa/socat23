@@ -24,21 +24,7 @@ echo "Unpacking and building..."
 tar xvf OpenSSL_$opensslversion.tar.gz
 cd openssl-OpenSSL_$opensslversion
 
-./config --prefix=`pwd`/local --openssldir=/usr/lib/ssl enable-ssl2 enable-ssl3-method enable-des enable-rc4 enable-weak-ssl-ciphers enable-ssl3 shared
-make depend
-make
-make -i install
-
-# set variables to use in socat build
-openssl_libs=`pwd`/local/lib
-openssl_include=`pwd`/local/include
-openssl_rpath="-Wl,-rpath,'\$\$ORIGIN/../openssl-$opensslversion/local/lib' -Wl,-z,origin"
-
-echo "OpenSSL build complete."
-
-# Next, socat!
 cd $working_directory
-
 echo "Downloading socat..."
 curl -s -O http://www.dest-unreach.org/socat/download/socat-$socatversion.tar.gz
 
@@ -46,10 +32,4 @@ echo "Unpacking and building..."
 tar xvf socat-$socatversion.tar.gz
 cd socat-$socatversion
 
-./configure LIBS="-L$openssl_libs" CPPFLAGS="-I$openssl_include" LDFLAGS="$openssl_rpath"
-make
 
-echo "Creating symlink to new socat for 'socat23'..."
-ln -s `pwd`/socat /usr/local/bin/socat23
-
-echo "Done"
