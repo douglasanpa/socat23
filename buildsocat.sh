@@ -12,10 +12,13 @@ opensslversion=1_0_2m
 socatversion=1.7.3.4
 working_directory=/usr/local/src
 
+cd $working_directory
+cd openssl-OpenSSL_$opensslversion
+
 # set variables to use in socat build
 openssl_libs=`pwd`/local/lib
 openssl_include=`pwd`/local/include
-openssl_rpath="-Wl,-rpath,'\$\$ORIGIN/../openssl-$opensslversion/local/lib' -Wl,-z,origin"
+openssl_rpath="-Wl,-rpath,'\$\$ORIGIN/../openssl-OpenSSL_$opensslversion/local/lib' -Wl,-z,origin"
 
 echo "OpenSSL build complete."
 
