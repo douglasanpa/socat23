@@ -7,4 +7,4 @@ RUN apk add --no-cache bash curl tar gzip perl make gcc g++ linux-headers readli
     chmod +x /build.sh && /build.sh &&\
     apk del tar gzip perl make gcc g++ linux-headers readline coreutils
 
-CMD ["socat23"]
+CMD ["/usr/local/bin/socat23"]
