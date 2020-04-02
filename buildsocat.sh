@@ -27,7 +27,7 @@ cd $working_directory
 
 cd socat-$socatversion
 
-./configure LIBS="-L$openssl_libs" CPPFLAGS="-I$openssl_include" LDFLAGS="$openssl_rpath"
+./configure LIBS="-L$openssl_libs" CPPFLAGS="-I$openssl_include" LDFLAGS="$openssl_rpath" --with-openssl-method
 make
 
 echo "Creating symlink to new socat for 'socat23'..."
