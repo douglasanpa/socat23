@@ -8,7 +8,7 @@ set -e
 
 # https://en.wikipedia.org/wiki/OpenSSL
 #   sslv2 is ripped from 1.1.0 so build latest 1.0.2
-opensslversion=1.0.2m
+opensslversion=1_0_2m
 socatversion=1.7.3.2
 working_directory=/usr/local/src
 
@@ -18,11 +18,11 @@ mkdir -p $working_directory
 cd $working_directory
 
 echo "Downloading OpenSSL $opensslversion..."
-curl -s -O https://www.openssl.org/source/openssl-$opensslversion.tar.gz
+curl -L -s -O https://github.com/openssl/openssl/archive/OpenSSL_$opensslversion.tar.gz
 
 echo "Unpacking and building..."
-tar xvf openssl-$opensslversion.tar.gz
-cd openssl-$opensslversion
+tar xvf OpenSSL_$opensslversion.tar.gz
+cd openssl-OpenSSL_$opensslversion
 
 ./config --prefix=`pwd`/local --openssldir=/usr/lib/ssl enable-ssl2 enable-ssl3-method enable-des enable-rc4 enable-weak-ssl-ciphers enable-ssl3 shared
 make depend
