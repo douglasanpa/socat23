@@ -9,4 +9,4 @@ RUN /download.sh
 RUN /buildopenssl.sh
 RUN /buildsocat.sh
 
-CMD ["socat", "-h"]
+CMD ["socat23", "-h"]
