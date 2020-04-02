@@ -1,12 +1,10 @@
 FROM alpine:3.2
 
 
-COPY download.sh buildopenssl.sh buildsocat.sh /
+COPY build.sh /
 
 RUN apk add --no-cache bash curl tar gzip perl make gcc g++ linux-headers readline coreutils &&\
-    chmod +x /download.sh && /download.sh &&\
-    chmod +x /buildopenssl.sh && /buildopenssl.sh &&\
-    chmod +x /buildsocat.sh && /buildsocat.sh &&\
+    chmod +x /build.sh && /build.sh &&\
     apk del tar gzip perl make gcc g++ linux-headers readline coreutils
 
 CMD ["socat23"]
